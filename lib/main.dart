@@ -4,6 +4,7 @@ import 'package:bite_food_delivery/Pages/search_screen.dart';
 import 'package:bite_food_delivery/Widget/custom_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
   runApp(MyApp());
@@ -33,16 +34,22 @@ class MyApp extends ConsumerWidget {
         pages: AccountScreen(),
       ),
     ];
-    final selectedIndex = ref.watch(bottomNavigationProvider);
     return ProviderScope(
-      child: MaterialApp(
-        home: Scaffold(
-          body: Consumer(
-            builder: (context, ref, child) {
-              return screens[selectedIndex].pages;
-            },
+      child: ScreenUtilInit(
+        designSize: const Size(375, 812),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: Scaffold(
+            body: Consumer(
+              builder: (context, ref, child) {
+                final selectedIndex = ref.watch(bottomNavigationProvider);
+                return screens[selectedIndex].pages;
+              },
+            ),
+            bottomNavigationBar: CustomBottomNavigationBar(items: screens),
           ),
-          bottomNavigationBar: CustomBottomNavigationBar(items: screens),
         ),
       ),
     );

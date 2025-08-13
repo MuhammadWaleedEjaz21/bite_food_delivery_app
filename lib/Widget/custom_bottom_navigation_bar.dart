@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
 
 final bottomNavigationProvider = StateProvider((ref) {
@@ -24,6 +25,7 @@ class CustomBottomNavigationBar extends ConsumerWidget {
                   selectedIcon: Icon(item.selectedicon),
                   unSelectedColor: Colors.grey,
                   selectedColor: Colors.orange,
+                  backgroundColor: Colors.orange
                 ),
               )
               .toList(),
@@ -35,6 +37,8 @@ class CustomBottomNavigationBar extends ConsumerWidget {
             barStyle: BubbleBarStyle.horizontal,
             bubbleFillStyle: BubbleFillStyle.fill,
             opacity: .3,
+            inkEffect: true,
+              inkColor: Colors.orange.shade100
           ),
         );
       },
